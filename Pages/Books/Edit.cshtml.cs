@@ -56,7 +56,7 @@ namespace Pop_Lucas_Lab2.Pages.Books
                 ViewData["PublisherID"] = new SelectList(_context.Set<Publisher>(), "ID", "PublisherName");
                 return Page();
             }
-
+             
             _context.Attach(Book).State = EntityState.Modified;
 
             try
