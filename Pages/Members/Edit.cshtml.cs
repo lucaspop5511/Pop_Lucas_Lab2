@@ -6,10 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Pop_Lucas_Lab2.Models;
 using Pop_Lucas_Lab2.Data;
+using Pop_Lucas_Lab2.Models;
 
-namespace Pop_Lucas_Lab2.Pages.Authors
+namespace Pop_Lucas_Lab2.Pages.Members
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace Pop_Lucas_Lab2.Pages.Authors
         }
 
         [BindProperty]
-        public Author Author { get; set; } = default!;
+        public Member Member { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +30,12 @@ namespace Pop_Lucas_Lab2.Pages.Authors
                 return NotFound();
             }
 
-            var author =  await _context.Author.FirstOrDefaultAsync(m => m.ID == id);
-            if (author == null)
+            var member =  await _context.Members.FirstOrDefaultAsync(m => m.ID == id);
+            if (member == null)
             {
                 return NotFound();
             }
-            Author = author;
+            Member = member;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace Pop_Lucas_Lab2.Pages.Authors
                 return Page();
             }
 
-            _context.Attach(Author).State = EntityState.Modified;
+            _context.Attach(Member).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace Pop_Lucas_Lab2.Pages.Authors
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!AuthorExists(Author.ID))
+                if (!MemberExists(Member.ID))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace Pop_Lucas_Lab2.Pages.Authors
             return RedirectToPage("./Index");
         }
 
-        private bool AuthorExists(int id)
+        private bool MemberExists(int id)
         {
-            return _context.Author.Any(e => e.ID == id);
+            return _context.Members.Any(e => e.ID == id);
         }
     }
 }

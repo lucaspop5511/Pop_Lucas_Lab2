@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Policy;
-using Nume_Pren_Lab2.Models;
+using Pop_Lucas_Lab2.Models;
 
 namespace Pop_Lucas_Lab2.Models
 {
@@ -21,6 +21,8 @@ namespace Pop_Lucas_Lab2.Models
         public Author? Author { get; set; }
 
         public ICollection<BookCategory>? BookCategories { get; set; }
+        public ICollection<Borrowing>? Borrowings { get; set; }
+
     }
 
 }

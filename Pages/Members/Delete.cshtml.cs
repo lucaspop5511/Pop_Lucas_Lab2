@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Pop_Lucas_Lab2.Models;
 using Pop_Lucas_Lab2.Data;
+using Pop_Lucas_Lab2.Models;
 
-namespace Pop_Lucas_Lab2.Pages.Authors
+namespace Pop_Lucas_Lab2.Pages.Members
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace Pop_Lucas_Lab2.Pages.Authors
         }
 
         [BindProperty]
-        public Author Author { get; set; } = default!;
+        public Member Member { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,15 +29,15 @@ namespace Pop_Lucas_Lab2.Pages.Authors
                 return NotFound();
             }
 
-            var author = await _context.Author.FirstOrDefaultAsync(m => m.ID == id);
+            var member = await _context.Members.FirstOrDefaultAsync(m => m.ID == id);
 
-            if (author == null)
+            if (member == null)
             {
                 return NotFound();
             }
             else
             {
-                Author = author;
+                Member = member;
             }
             return Page();
         }
@@ -49,11 +49,11 @@ namespace Pop_Lucas_Lab2.Pages.Authors
                 return NotFound();
             }
 
-            var author = await _context.Author.FindAsync(id);
-            if (author != null)
+            var member = await _context.Members.FindAsync(id);
+            if (member != null)
             {
-                Author = author;
-                _context.Author.Remove(Author);
+                Member = member;
+                _context.Members.Remove(Member);
                 await _context.SaveChangesAsync();
             }
 

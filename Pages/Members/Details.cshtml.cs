@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Pop_Lucas_Lab2.Models;
 using Pop_Lucas_Lab2.Data;
+using Pop_Lucas_Lab2.Models;
 
-namespace Pop_Lucas_Lab2.Pages.Authors
+namespace Pop_Lucas_Lab2.Pages.Members
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Pop_Lucas_Lab2.Pages.Authors
             _context = context;
         }
 
-        public Author Author { get; set; } = default!;
+        public Member Member { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,14 +28,14 @@ namespace Pop_Lucas_Lab2.Pages.Authors
                 return NotFound();
             }
 
-            var author = await _context.Author.FirstOrDefaultAsync(m => m.ID == id);
-            if (author == null)
+            var member = await _context.Members.FirstOrDefaultAsync(m => m.ID == id);
+            if (member == null)
             {
                 return NotFound();
             }
             else
             {
-                Author = author;
+                Member = member;
             }
             return Page();
         }

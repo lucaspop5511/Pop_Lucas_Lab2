@@ -1,6 +1,6 @@
 ﻿using Pop_Lucas_Lab2.Models;
 
-namespace Nume_Pren_Lab2.ViewModels
+namespace Pop_Lucas_Lab2.ViewModels
 {
     public class PublisherIndexData
     {

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Nume_Pren_Lab2.Models;
+using Pop_Lucas_Lab2.Models;
 using Pop_Lucas_Lab2.Data;
 using Pop_Lucas_Lab2.Models;
 

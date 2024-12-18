@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Pop_Lucas_Lab2.Models;
+using Microsoft.EntityFrameworkCore;
 using Pop_Lucas_Lab2.Data;
 
-namespace Pop_Lucas_Lab2.Pages.Authors
+namespace Pop_Lucas_Lab2.Pages.Borrowings
 {
     public class CreateModel : PageModel
     {
@@ -21,11 +21,22 @@ namespace Pop_Lucas_Lab2.Pages.Authors
 
         public IActionResult OnGet()
         {
+            var bookList = _context.Book
+                .Include(b => b.Author)
+                .Select(x => new
+                {
+                    x.ID,
+                    BookFullName = x.Title + " - " + x.Author.LastName + " " + x.Author.FirstName
+                });
+
+            ViewData["BookID"] = new SelectList(bookList, "ID", "BookFullName");
+            ViewData["MemberID"] = new SelectList(_context.Members, "ID", "FullName");
             return Page();
         }
 
+
         [BindProperty]
-        public Author Author { get; set; } = default!;
+        public Borrowing Borrowing { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +46,7 @@ namespace Pop_Lucas_Lab2.Pages.Authors
                 return Page();
             }
 
-            _context.Author.Add(Author);
+            _context.Borrowings.Add(Borrowing);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

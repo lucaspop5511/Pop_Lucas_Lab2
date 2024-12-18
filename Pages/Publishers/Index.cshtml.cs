@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Nume_Pren_Lab2.ViewModels;
+using Pop_Lucas_Lab2.ViewModels;
 using Pop_Lucas_Lab2.Data;
 using Pop_Lucas_Lab2.Models;
 

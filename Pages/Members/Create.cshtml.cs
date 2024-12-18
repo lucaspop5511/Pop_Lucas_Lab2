@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Pop_Lucas_Lab2.Models;
 using Pop_Lucas_Lab2.Data;
+using Pop_Lucas_Lab2.Models;
 
-namespace Pop_Lucas_Lab2.Pages.Authors
+namespace Pop_Lucas_Lab2.Pages.Members
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace Pop_Lucas_Lab2.Pages.Authors
         }
 
         [BindProperty]
-        public Author Author { get; set; } = default!;
+        public Member Member { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace Pop_Lucas_Lab2.Pages.Authors
                 return Page();
             }
 
-            _context.Author.Add(Author);
+            _context.Members.Add(Member);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

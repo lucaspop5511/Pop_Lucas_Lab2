@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Pop_Lucas_Lab2.Models;
 using Pop_Lucas_Lab2.Data;
 
-namespace Pop_Lucas_Lab2.Pages.Authors
+namespace Pop_Lucas_Lab2.Pages.Borrowings
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +18,13 @@ namespace Pop_Lucas_Lab2.Pages.Authors
             _context = context;
         }
 
-        public IList<Author> Author { get;set; } = default!;
+        public IList<Borrowing> Borrowing { get;set; } = default!;
 
         public async Task OnGetAsync()
         {
-            Author = await _context.Author.ToListAsync();
+            Borrowing = await _context.Borrowings
+                .Include(b => b.Book)
+                .Include(b => b.Member).ToListAsync();
         }
     }
 }
